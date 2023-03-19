@@ -16,4 +16,4 @@ Music Room is a web application that allows users to create a room and play musi
 ```docker-compose build```
 3. Start the containers:
 ```docker-compose up```
-4. Access the application at [http://localhost:3000](http://localhost:3000)
+4. Access the application at [http://localhost:8000](http://localhost:8000)
