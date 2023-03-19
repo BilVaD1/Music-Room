@@ -1,5 +1,5 @@
 # Music Room
-Music Room is a web application that allows users to create a room and play music from Spotify. Other users who have access to the room can vote to skip songs, pause or start the music, and view the song queue.
+Music Room is a web application that allows users to create a room and play music from **Spotify**. Other users who have access to the room can vote to skip songs, pause or start the music, and view the song queue.
 
 ## Features
 * Create a room and invite other users to join
