@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .credentials import CLIENT_ID, CLIENT_SECRET, REDIRECT_URI
+#from .credentials import CLIENT_ID, CLIENT_SECRET, REDIRECT_URI
 from rest_framework.views import APIView
 from requests import Request, post
 from rest_framework import status
@@ -8,17 +8,18 @@ from .util import *
 from music_api.models import Room
 from .models import Vote
 
+from music_controller.settings import get_spotify_credentials
+
 class AuthURL(APIView):
     def get(self, request, format=None):
         # Scopes provide Spotify users using third-party apps the confidence that only the information they choose to share will be shared, and nothing more.
         scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing'
-
         # Create url to use it in frontend
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
             'scope': scopes,
             'response_type': 'code',
-            'redirect_uri': REDIRECT_URI, # It's using to call spotify_callback
-            'client_id': CLIENT_ID
+            'redirect_uri': get_spotify_credentials().REDIRECT_URI, # It's using to call spotify_callback
+            'client_id': get_spotify_credentials().CLIENT_ID
         }).prepare().url
 
         return Response({'url': url}, status=status.HTTP_200_OK)
@@ -31,9 +32,9 @@ def spotify_callback(request, format=None):
     response = post('https://accounts.spotify.com/api/token', data={
         'grant_type': 'authorization_code',
         'code': code,
-        'redirect_uri': REDIRECT_URI,
-        'client_id': CLIENT_ID,
-        'client_secret': CLIENT_SECRET
+        'redirect_uri': get_spotify_credentials().REDIRECT_URI,
+        'client_id': get_spotify_credentials().CLIENT_ID,
+        'client_secret': get_spotify_credentials().CLIENT_SECRET
     }).json()
 
     print(response)
@@ -55,7 +56,6 @@ def spotify_callback(request, format=None):
     return redirect('frontend:')
 
 class IsAuthenticated(APIView):
-
     def get(self, request, format=None):
         is_authenticated = is_spotify_authenticated(self.request.session.session_key)
         return Response({'status': is_authenticated}, status=status.HTTP_200_OK)

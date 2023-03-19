@@ -1,4 +1,5 @@
-# Try to transfer this information to the .env from the .py
-CLIENT_ID = '4f4b912a5f104d3ea3fd1c8336b6866f'
-CLIENT_SECRET = 'd453c80f727c49e0a07997518c263a69'
-REDIRECT_URI = 'http://127.0.0.1:8000/spotify/redirect'
+class Credentials:
+    def __init__(self, CLIENT_ID, CLIENT_SECRET, REDIRECT_URI):
+        self.CLIENT_ID = CLIENT_ID
+        self.CLIENT_SECRET = CLIENT_SECRET
+        self.REDIRECT_URI = REDIRECT_URI

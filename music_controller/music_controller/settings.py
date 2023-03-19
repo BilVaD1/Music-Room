@@ -11,9 +11,29 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+from spotify.credentials import Credentials
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+def get_spotify_credentials():
+    # Create the instance of class Credentials from the .env
+    load_dotenv()
+
+    SPOTIFY_CLIENT_ID = os.getenv('CLIENT_ID')
+    SPOTIFY_CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+    SPOTIFY_REDIRECT_URI = os.getenv('REDIRECT_URI')
+
+    credentials = Credentials(
+        CLIENT_ID=SPOTIFY_CLIENT_ID,
+        CLIENT_SECRET=SPOTIFY_CLIENT_SECRET,
+        REDIRECT_URI=SPOTIFY_REDIRECT_URI
+    )
+
+    """Returns a Credentials object for accessing the Spotify API."""
+    return credentials
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +45,7 @@ SECRET_KEY = 'django-insecure-qg^ym+5h*&yc!bifl#d7xzvzp0ghebp*6+kk&qm!sq#)k5qu=x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
