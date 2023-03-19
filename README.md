@@ -5,7 +5,6 @@ Music Room is a web application that allows users to create a room and play musi
 * Create a room and invite other users to join
 * Play music from Spotify and view the current song queue
 * Vote to skip songs or pause/start the music
-* View the list of users in the room
 ## Requirements
 * Docker
 * Spotify Premium account (for host user only)
