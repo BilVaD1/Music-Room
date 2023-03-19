@@ -13,9 +13,9 @@ Music Room is a web application that allows users to create a room and play musi
 1. Clone the repository to your local machine
 2. Create a `.env` file in the root directory with the following variables
 ```
-CLIENT_ID=<your_spotify_client_id>
-CLIENT_SECRET=<your_spotify_client_secret>
-REDIRECT_URI=http://localhost:8000/spotify/redirect
+CLIENT_ID='<your_spotify_client_id>'
+CLIENT_SECRET='<your_spotify_client_secret>'
+REDIRECT_URI='http://127.0.0.1:8000/spotify/redirect'
 ```
 Replace `<your_spotify_client_id>` and `<your_spotify_client_secret>` with your Spotify API credentials. You can get these by registering your application at the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/).
 
