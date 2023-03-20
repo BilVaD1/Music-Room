@@ -24,3 +24,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.code {
+  padding-bottom: 50px;
+  margin: auto;
+}

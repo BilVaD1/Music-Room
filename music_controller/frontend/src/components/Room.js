@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CreateRoomPage from "./CreateRoomPage";
 
 import MusicPlayer from './MusicPlayer';
+import defaultMusic from '../../static/images/default.png'
 
 
 const Room = ({ leaveRoomCallback }) => {
@@ -19,6 +20,16 @@ const Room = ({ leaveRoomCallback }) => {
     const navigate = useNavigate();
 
     // const roomCode = props.match.params.roomCode;
+    MusicPlayer.defaultProps = {
+        title: 'Start music on your Spotify',
+        artist: 'Default',
+        image_url: defaultMusic,
+        is_playing: false,
+        time: 0,
+        duration: 0,
+        votes: 0,
+        votes_require: 0
+    }
 
     const getRoomDetails = useCallback(() => {
         fetch("/api/get-room" + "?code=" + roomCode)
@@ -114,11 +125,13 @@ const Room = ({ leaveRoomCallback }) => {
 
     return (
         <Grid container spacing={1}>
-            <Grid item xs={12} align="center">
-                <Typography variant="h4" component="h4">
-                    Code: {roomCode}
-                </Typography>
-            </Grid>
+            <div className='code'>
+                <Grid item xs={12} align="center">
+                    <Typography variant="h4" component="h4">
+                        Code: {roomCode}
+                    </Typography>
+                </Grid>
+            </div>
             <MusicPlayer
                 title={song.title}
                 artist={song.artist}
